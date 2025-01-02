@@ -1,0 +1,18 @@
+#
+# trace40.txt - Pipeline with two commands, both in the same process group
+#
+
+# ./myspin should take 5 seconds without interruption, but ./myintgroup should
+# interrupt all processes in the process group in 1 second.  Thus, the entire
+# pipeline should finish in 1 second.  If the timestamps resulting from
+# /bin/date are more than 3 seconds apart, then we know that ./myspin didn't
+# get the signal and thus, wasn't in the same process group.
+/bin/echo -e tsh> /bin/date +%s
+/bin/date +%s
+
+/bin/echo -e tsh> ./myspin 5 \0174 ./myintgroup 1
+./myspin 5 | ./myintgroup 1
+
+/bin/echo -e tsh> /bin/date +%s
+/bin/date +%s
+

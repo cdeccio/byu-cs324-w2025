@@ -1,0 +1,31 @@
+#
+# trace37.txt - Pipeline with two commands, synchronization
+#
+
+# These ./myspin processes should only last for five seconds and one second,
+# respectively.  However, the shell should not return to the prompt until both
+# have finished.  Thus, by the time this exits, neither should still be
+# running.  After ps is run, the driver will check that myspin is not found in
+# the process list.
+/bin/echo -e tsh> ./myspin 5 \0174 ./myspin 1
+./myspin 5 | ./myspin 1
+
+SLEEP 1
+
+/bin/echo tsh> /bin/ps T
+/bin/ps T
+
+SLEEP 5
+
+# These ./myspin processes should only last for one second and five seconds,
+# respectively.  However, the shell should not return to the prompt until both
+# have finished.  Thus, by the time this exits, neither should still be
+# running.  After ps is run, the driver will check that myspin is not found in
+# the process list.
+/bin/echo -e tsh> ./myspin 1 \0174 ./myspin 5
+./myspin 1 | ./myspin 5
+
+SLEEP 1
+
+/bin/echo tsh> /bin/ps T
+/bin/ps T

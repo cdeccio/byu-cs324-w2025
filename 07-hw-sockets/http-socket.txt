@@ -1,0 +1,3 @@
+GET /cgi-bin/slowsend.cgi?obj=socket HTTP/1.0
+Host: www-notls.imaal.byu.edu
+

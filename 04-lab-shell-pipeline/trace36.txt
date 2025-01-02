@@ -1,0 +1,19 @@
+#
+# trace36.txt - Pipeline with two commands
+#
+
+# Start out easy.  Pipe the contents of ./myppid to ./mycat, which should just
+# print them on the terminal. (Note, however, that it is ./mycat printing to
+# the terminal, not ./myppid.)
+/bin/echo -e tsh> ./myppid \0174 ./mycat 5
+./myppid | ./mycat 5
+
+# Now pipe the contents of ./myppid to grep, which should only print them if
+# the pattern matches.  The first pattern should match (i.e., because it is a
+# numerical process ID being printed), and the second pattern should not.
+
+/bin/echo -e tsh> ./myppid \0174 ./mygrep 5 [0-9]
+./myppid | ./mygrep 5 [0-9]
+
+/bin/echo -e tsh> ./myppid \0174 ./mygrep 5 [a-z]
+./myppid | ./mygrep 5 [a-z]

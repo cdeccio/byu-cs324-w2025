@@ -1,0 +1,25 @@
+#
+# trace42.txt - Both stdin/stdout redirection
+#
+# The first instance of TEMPFILE1 creates that file with its content being the
+# name of the file.  Thus, it exists when /bin/echo is called, and it is
+# removed when /bin/rm is called.
+/bin/echo -e tsh> /bin/rm TEMPFILE1
+/bin/rm TEMPFILE1
+
+# Since TEMPFILE1 has already been seen (in previous commands), it will not
+# come into existence with the /bin/echo command.  Thus, at this point (because
+# of the previous /bin/rm command), it will not exist until the pipeline below
+# is run. The first instance of TEMPFILE2 creates that file with its content
+# being the name of the file.  Thus, it exists when /bin/echo is called.
+# The ./mycat command should read the contents of TEMPFILE2, for which stdin
+# has been redirected and then print it to TEMPFILE1, to which stdout has been
+# redirected.  Thus, there should be no output to the console.
+/bin/echo -e tsh> ./mycat 5 \0074 TEMPFILE2 \0076 TEMPFILE1
+./mycat 5 < TEMPFILE2 > TEMPFILE1
+
+# Dump the contents of TEMPFILE1.
+# If the contents of this file are incorrect, then either input redirection or
+# output redirection did not work properly.
+/bin/echo -e tsh> ./mycat 5 TEMPFILE1
+./mycat 5 TEMPFILE1

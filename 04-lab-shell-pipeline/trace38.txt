@@ -1,0 +1,36 @@
+#
+# trace38.txt - Pipeline with more than two commands
+#
+
+# The output of ./myppid is the PID in parentheses.  This first pipeline
+# filters out all output; the first ./mygrep does not match, and the second
+# ./mygrep does match.  Thus, ultimately there is no output to the console.
+/bin/echo -e tsh> ./myppid \0174 ./mygrep 5 [a-z] \0174 ./mygrep 5 [0-9]
+./myppid | ./mygrep 5 [a-z] | ./mygrep 5 [0-9]
+
+# This second pipeline also filters out all output; the first ./mygrep matches,
+# and the second ./mygrep does not match.  Thus, ultimately there is no output to
+# the console.
+/bin/echo -e tsh> ./myppid \0174 ./mygrep 5 [0-9] \0174 ./mygrep 5 [a-z]
+./myppid | ./mygrep 5 [0-9] | ./mygrep 5 [a-z]
+
+# This pipeline should again result in no output.  Although the middle ./mycat
+# command simply passes the input through, the last ./mygrep uses a pattern
+# that does not match the input.
+/bin/echo -e tsh> ./myppid \0174 ./mycat 5 \0174 ./mygrep 5 [a-z]
+./myppid | ./mycat 5 | ./mygrep 5 [a-z]
+
+# This should be the same as the previous command, but there are now two
+# ./mycat commands in the middle
+/bin/echo -e tsh> ./myppid \0174 ./mycat 5 \0174  ./mycat 5 \0174 ./mygrep 5 [a-z]
+./myppid | ./mycat 5 | ./mycat 5 | ./mygrep 5 [a-z]
+# This pipeline should allow the PID to be printed by the last command because
+# the middle ./mycat command simply passes the input through, and the last
+# ./mygrep uses a matching pattern.
+/bin/echo -e tsh> ./myppid \0174 ./mycat 5 \0174 ./mygrep 5 [0-9]
+./myppid | ./mycat 5 |  ./mygrep 5 [0-9]
+
+# This should be the same as the previous command, but there are now two
+# ./mycat commands in the middle
+/bin/echo -e tsh> ./myppid \0174 ./mycat 5 \0174 ./mycat 5 \0174 ./mygrep 5 [0-9]
+./myppid | ./mycat 5 | ./mycat 5 | ./mygrep 5 [0-9]

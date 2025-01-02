@@ -1,0 +1,54 @@
+#
+# trace34.txt - Redirect standard output
+#
+
+# The first instance of TEMPFILE1 and TEMPFILE2 creates those files with
+# their content being the name of the files.  Thus, they exist when
+# /bin/echo is called, and they are removed when /bin/rm is called.
+/bin/echo -e tsh> /bin/rm TEMPFILE1 TEMPFILE2
+/bin/rm TEMPFILE1 TEMPFILE2
+
+# Since TEMPFILE1 has already been seen (in previous commands), it will not
+# come into existence with the /bin/echo command.  Thus, at this point (because
+# of the previous /bin/rm command), it will not exist until ./myppid is called.
+# The ./myppid command should produce no output to the console because stdout
+# has been redirected.
+/bin/echo -e tsh> ./myppid \0076 TEMPFILE1
+./myppid > TEMPFILE1
+
+# Since TEMPFILE1 has already been seen (in previous commands), it will not
+# come into existence with the /bin/echo command.  Thus, at this point (because
+# of the previous /bin/rm command), it will not exist until ./myppid is called.
+# The stderr output from ./myppid should be the only output to the console
+# because stdout has been redirected, but stderr has not.
+#
+# NOTE: currently this doesn't seem to work...
+/bin/echo -e tsh> ./myppid -e \0076 TEMPFILE2
+./myppid -e > TEMPFILE2
+
+# In this case TEMPFILE3 will be created when /bin/echo is called because it is
+# the first time it has appeared in the file.  Thus, the file will exist, with
+# contents being the name of the file itself, when ./myppid is called.
+/bin/echo -e tsh> ./myppid \0076 TEMPFILE3
+./myppid > TEMPFILE3
+
+# Dump the contents of TEMPFILE1.
+# If the contents of this file are incorrect, then it was either not opened
+# properly (e.g., nonexistent file should be created) or not duplicated properly
+# onto stdout.
+/bin/echo -e tsh> ./mycat 5 TEMPFILE1
+./mycat 5 TEMPFILE1
+
+# Dump the contents of TEMPFILE2.
+# If the contents of this file are incorrect, then it was either not opened
+# properly (e.g., nonexistent file should be created), not duplicated properly
+# onto stdout, or file was also duplicated onto stderr (it shouldn't be).
+/bin/echo -e tsh> ./mycat 5 TEMPFILE2
+./mycat 5 TEMPFILE2
+
+# Dump the contents of TEMPFILE3.
+# If the contents of this file are incorrect, then it was either not opened
+# properly (e.g., existing file should be truncated) or not duplicated properly
+# onto stdout.
+/bin/echo -e tsh> ./mycat 5 TEMPFILE3
+./mycat 5 TEMPFILE3

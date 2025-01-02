@@ -1,0 +1,30 @@
+#
+# trace39.txt - Pipeline with more than two commands, synchronization
+#
+# The shell should not return to the prompt until all commands have finished.
+# After ps is run, the driver will check that myspin is not found in the
+# process list.
+
+/bin/echo -e tsh> ./myspin 5 \0174 ./myspin 1 \0174 ./myspin 1
+./myspin 5 | ./myspin 1 | ./myspin 1
+
+SLEEP 1
+
+/bin/echo tsh> /bin/ps T
+/bin/ps T
+
+/bin/echo -e tsh> ./myspin 1 \0174 ./myspin 1 \0174 ./myspin 5
+./myspin 1 | ./myspin 1 | ./myspin 5
+
+SLEEP 1
+
+/bin/echo tsh> /bin/ps T
+/bin/ps T
+
+/bin/echo -e tsh> ./myspin 1 \0174 ./myspin 5 \0174 ./myspin 1
+./myspin 1 | ./myspin 5 | ./myspin 1
+
+SLEEP 1
+
+/bin/echo tsh> /bin/ps T
+/bin/ps T

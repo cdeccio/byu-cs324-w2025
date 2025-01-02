@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="145.37131mm"
+   height="141.91501mm"
+   viewBox="0 0 145.37131 141.91501"
+   version="1.1"
+   id="svg896"
+   sodipodi:docname="treasure_hunt.svg"
+   inkscape:version="1.2.2 (b0a84865, 2022-12-01)"
+   inkscape:export-filename="treasure_hunt.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview898"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="1"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="true"
+     inkscape:zoom="0.914906"
+     inkscape:cx="241.00837"
+     inkscape:cy="283.08919"
+     inkscape:window-width="1406"
+     inkscape:window-height="830"
+     inkscape:window-x="64"
+     inkscape:window-y="521"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid1017"
+       originx="34.742168"
+       originy="-53.291567" />
+  </sodipodi:namedview>
+  <defs
+     id="defs893">
+    <marker
+       style="overflow:visible"
+       id="marker4078"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Arrow1L"
+       markerWidth="8.75"
+       markerHeight="5"
+       viewBox="0 0 8.75 5"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path4076"
+         transform="scale(-0.5)" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1L"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Arrow1L"
+       markerWidth="8.75"
+       markerHeight="5"
+       viewBox="0 0 8.75 5"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="arrow1L"
+         transform="scale(-0.5)" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(34.742168,-53.291569)">
+    <text
+       xml:space="preserve"
+       style="font-size:4.93889px;line-height:1.25;font-family:sans-serif;text-align:end;text-anchor:end;stroke-width:0.264583"
+       x="16.757299"
+       y="57.043968"
+       id="text1111"><tspan
+         sodipodi:role="line"
+         style="font-size:4.93889px;text-align:start;text-anchor:start;stroke-width:0.264583"
+         x="16.757299"
+         y="57.043968"
+         id="tspan1119">Client</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.765;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1L)"
+       d="m 24.036279,65.309158 74.957757,7.436738"
+       id="path3737" />
+    <text
+       xml:space="preserve"
+       style="font-size:4.93889px;line-height:1.25;font-family:sans-serif;text-align:end;text-anchor:end;stroke-width:0.264583"
+       x="94.254601"
+       y="57.043968"
+       id="text3225"><tspan
+         sodipodi:role="line"
+         style="font-size:4.93889px;text-align:start;text-anchor:start;stroke-width:0.264583"
+         x="94.254601"
+         y="57.043968"
+         id="tspan3223">Server</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.765;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker4078)"
+       d="m 28.084965,91.609656 26.77729,-2.656639 48.180465,-4.780099"
+       id="path3227"
+       sodipodi:nodetypes="ccc" />
+    <text
+       xml:space="preserve"
+       style="font-size:4.93889px;line-height:1.25;font-family:sans-serif;text-align:end;text-anchor:end;stroke-width:0.264583"
+       x="66.727631"
+       y="61.496296"
+       id="text4132"
+       transform="rotate(5.5344673)"><tspan
+         sodipodi:role="line"
+         style="font-size:4.93889px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="66.727631"
+         y="61.496296"
+         id="tspan4130">Initial Request</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:4.93889px;text-align:start;text-anchor:start;stroke-width:0.264583"
+         x="66.727631"
+         y="67.669907"
+         id="tspan4134"><tspan
+   style="text-align:center;text-anchor:middle"
+   id="tspan4136">(8 bytes</tspan>)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.93889px;line-height:1.25;font-family:sans-serif;text-align:end;text-anchor:end;stroke-width:0.264583"
+       x="52.883652"
+       y="92.155418"
+       id="text4144"
+       transform="rotate(-5.2229174)"><tspan
+         sodipodi:role="line"
+         style="font-size:4.93889px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="52.883652"
+         y="92.155418"
+         id="tspan4138">Directions Response</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:4.93889px;text-align:start;text-anchor:start;stroke-width:0.264583"
+         x="52.883652"
+         y="98.329033"
+         id="tspan4142"><tspan
+   style="text-align:center;text-anchor:middle"
+   id="tspan4140">(variable length</tspan>)</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.765;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1L)"
+       d="m 24.036279,111.35251 74.957757,7.43677"
+       id="path4150" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.765;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker4078)"
+       d="m 28.084965,137.12389 26.77729,-2.65664 48.180465,-4.7801"
+       id="path4152"
+       sodipodi:nodetypes="ccc" />
+    <text
+       xml:space="preserve"
+       style="font-size:4.93889px;line-height:1.25;font-family:sans-serif;text-align:end;text-anchor:end;stroke-width:0.264583"
+       x="71.168175"
+       y="107.32504"
+       id="text4160"
+       transform="rotate(5.5344673)"><tspan
+         sodipodi:role="line"
+         style="font-size:4.93889px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="71.168175"
+         y="107.32504"
+         id="tspan4154">Follow-Up Request</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:4.93889px;text-align:start;text-anchor:start;stroke-width:0.264583"
+         x="71.168175"
+         y="113.49866"
+         id="tspan4158"><tspan
+   style="text-align:center;text-anchor:middle"
+   id="tspan4156">(4 bytes</tspan>)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.93889px;line-height:1.25;font-family:sans-serif;text-align:end;text-anchor:end;stroke-width:0.264583"
+       x="48.740414"
+       y="137.48042"
+       id="text4168"
+       transform="rotate(-5.2229174)"><tspan
+         sodipodi:role="line"
+         style="font-size:4.93889px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="48.740414"
+         y="137.48042"
+         id="tspan4162">Directions Response</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:4.93889px;text-align:start;text-anchor:start;stroke-width:0.264583"
+         x="48.740414"
+         y="143.65404"
+         id="tspan4166"><tspan
+   style="text-align:center;text-anchor:middle"
+   id="tspan4164">(variable length</tspan>)</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.765;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1L)"
+       d="m 24.036279,159.50698 74.957757,7.43677"
+       id="path5690" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.765;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker4078)"
+       d="m 28.084965,182.63251 26.77729,-2.65664 48.180465,-4.7801"
+       id="path5692"
+       sodipodi:nodetypes="ccc" />
+    <text
+       xml:space="preserve"
+       style="font-size:4.93889px;line-height:1.25;font-family:sans-serif;text-align:end;text-anchor:end;stroke-width:0.264583"
+       x="75.81218"
+       y="155.2551"
+       id="text5700"
+       transform="rotate(5.5344673)"><tspan
+         sodipodi:role="line"
+         style="font-size:4.93889px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="75.81218"
+         y="155.2551"
+         id="tspan5694">Follow-Up Request</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:4.93889px;text-align:start;text-anchor:start;stroke-width:0.264583"
+         x="75.81218"
+         y="161.42871"
+         id="tspan5698"><tspan
+   style="text-align:center;text-anchor:middle"
+   id="tspan5696">(4 bytes</tspan>)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.93889px;line-height:1.25;font-family:sans-serif;text-align:end;text-anchor:end;stroke-width:0.264583"
+       x="47.725967"
+       y="183.6543"
+       id="text5708"
+       transform="rotate(-5.7225965)"><tspan
+         sodipodi:role="line"
+         style="font-size:4.93889px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="47.725967"
+         y="183.6543"
+         id="tspan5702">Final Directions Response</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:4.93889px;text-align:start;text-anchor:start;stroke-width:0.264583"
+         x="47.725967"
+         y="189.82791"
+         id="tspan5706"><tspan
+   style="text-align:center;text-anchor:middle"
+   id="tspan5704">(variable length</tspan>)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.93889px;line-height:1.25;font-family:sans-serif;text-align:end;text-anchor:end;stroke-width:0.264583"
+       x="55.052181"
+       y="148.52592"
+       id="text5738"
+       transform="rotate(-0.15104314)"><tspan
+         sodipodi:role="line"
+         style="font-weight:bold;font-size:4.93889px;text-align:start;text-anchor:start;stroke-width:0.264583"
+         x="55.052181"
+         y="148.52592"
+         id="tspan5736">. . .</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.9875px;line-height:1.25;font-family:sans-serif;text-align:end;text-anchor:end;stroke-width:0.264584"
+       x="32.244663"
+       y="76.108162"
+       id="text5744"
+       transform="scale(0.70613982,1.4161501)"><tspan
+         sodipodi:role="line"
+         id="tspan5742"
+         style="stroke-width:0.264584"
+         x="32.244663"
+         y="76.108162">{</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.93889px;line-height:1.25;font-family:sans-serif;text-align:end;text-anchor:end;stroke-width:0.264583"
+       x="-10.172314"
+       y="97.482361"
+       id="text5756"
+       transform="rotate(-0.15104314)"><tspan
+         sodipodi:role="line"
+         style="font-weight:normal;font-size:4.93889px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="-10.172315"
+         y="97.482361"
+         id="tspan5754">extract nonce;</tspan><tspan
+         sodipodi:role="line"
+         style="font-weight:normal;font-size:4.93889px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="-10.172314"
+         y="103.65598"
+         id="tspan7418">save chunk;</tspan><tspan
+         sodipodi:role="line"
+         style="font-weight:normal;font-size:4.93889px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="-10.172314"
+         y="109.82958"
+         id="tspan5758">update address/port</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.765;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="M 22.688002,58.639455 22.639832,191.77161"
+       id="path5896" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.765;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="m 104.70891,58.3508 -0.0482,124.16613"
+       id="path5908" />
+    <text
+       xml:space="preserve"
+       style="font-size:4.93889px;line-height:1.25;font-family:sans-serif;text-align:end;text-anchor:end;stroke-width:0.264583"
+       x="-10.47146"
+       y="187.96886"
+       id="text7416"
+       transform="rotate(-0.15104314)"><tspan
+         sodipodi:role="line"
+         style="font-weight:normal;font-size:4.93889px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="-10.47146"
+         y="187.96886"
+         id="tspan7414" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.93889px;line-height:1.25;font-family:sans-serif;text-align:end;text-anchor:end;stroke-width:0.264583"
+       x="-2.0048218"
+       y="187.99107"
+       id="text7432"
+       transform="rotate(-0.15104314)"><tspan
+         sodipodi:role="line"
+         style="font-weight:normal;font-size:4.93889px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="-2.004822"
+         y="187.99107"
+         id="tspan7428">save chunk;</tspan><tspan
+         sodipodi:role="line"
+         style="font-weight:normal;font-size:4.93889px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="-2.0048213"
+         y="194.16469"
+         id="tspan7430">print treasure</tspan></text>
+  </g>
+</svg>

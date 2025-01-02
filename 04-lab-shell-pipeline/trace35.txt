@@ -1,0 +1,11 @@
+#
+# trace35.txt - Redirect standard input
+#
+
+# The first instance of TEMPFILE1 brings that file into existence with its
+# content being the name of the file.  Thus, it is created when
+# /bin/echo is called.  Then ./mycat reads the file and prints its contents to
+# standard output.  The argument "5" tells ./mycat to quit after 5 seconds, no
+# matter what, so the process doesn't linger.
+/bin/echo -e tsh> ./mycat 5 \0074 TEMPFILE1
+./mycat 5 < TEMPFILE1
