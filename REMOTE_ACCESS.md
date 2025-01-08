@@ -25,7 +25,7 @@ also access them remotely, which is often more convenient.
     by running the following from a terminal on your machine:
 
     ```bash
-    ssh schizo
+    ssh yournetid@schizo.cs.byu.edu
     ```
 
     You can think of schizo as a load balancer for SSH.  Note that your home
@@ -40,7 +40,7 @@ also access them remotely, which is often more convenient.
     For example: "florida", "idaho", or "alabama")
 
     ```bash
-    ssh hostname
+    ssh yournetid@hostname.cs.byu.edu
     ```
 
     In addition to remote terminal access with the `ssh` command, you can also
