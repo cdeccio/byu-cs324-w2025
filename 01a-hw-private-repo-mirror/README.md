@@ -122,7 +122,9 @@ will also be a mirror of the upstream class repository.
     - Make sure the visibility of the repository is _Private_ (Step 4).
     - Do _not_ check the box "Initialize this repository with a README" (Step 5).
 
- 2. Please double-check that your repository is _private_.
+ 2. Double-check that:
+    - your repository is _private_; and
+    - your repository is _empty_.
 
  3. Clone the upstream class repository by running the following command in the
     terminal:
