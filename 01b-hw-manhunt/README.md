@@ -10,17 +10,11 @@ and operating system features _for your running system_.
 NOTE: Throughout this exercise, you _must_ run the `man` command on a BYU CS
 lab machine, or you will get unexpected results.
 
-Either log on to a BYU CS lab workstation directly or log on remotely using
-SSH.  To log in using `ssh`, open a terminal and use the following `ssh`
-command:
+Using the guidance from the
+[remote access information page](../REMOTE_ACCESS.md), log in to a CS lab
+machine.
 
-(Replace "username" with your actual CS username)
-
-```bash
-ssh username@schizo.cs.byu.edu
-```
-
-Once logged in, run the following:
+Once logged in, run the following from a terminal:
 
 ```bash
 man man

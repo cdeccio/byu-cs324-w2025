@@ -22,15 +22,9 @@ the entire assignment before beginning!
 NOTE: Throughout this exercise, you _must_ run the `ssh` command on a BYU CS
 lab machine, or you will get unexpected results.
 
-Either log on to a BYU CS lab workstation directly or log on remotely using
-SSH.  To log in using `ssh`, open a terminal and use the following `ssh`
-command:
-
-(Replace "username" with your actual CS username)
-
-```bash
-ssh username@schizo.cs.byu.edu
-```
+Using the guidance from the
+[remote access information page](../REMOTE_ACCESS.md), log in to a CS lab
+machine.
 
 
 # Instructions
