@@ -5,12 +5,13 @@ compilation, and execution, using `scp`, `ssh`, and `tmux`.
 
 Using the guidance from the
 [remote access information page](../REMOTE_ACCESS.md), follow the instructions
-to "get on to the CS network", but do *not* log on to a CS lab machine (unless
-you do not have a personal computer).
+to "get on to the CS network", but do *not* log on to a CS lab machine.
 
-From a terminal on your own computer (or a CS lab machine, in the case you do
-not have a personal computer) open a terminal from which you will run the
-commands specified.
+From a terminal on your own computer, open a terminal from which you will run
+the commands specified.
+
+(If you do not have a personal computer, you may log on to a CS lab machine and
+perform these exercises.)
 
  1. Copy `hello.c` to one of the BYU CS lab machines using `scp`:
 
