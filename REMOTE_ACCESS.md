@@ -24,9 +24,17 @@ also access them remotely, which is often more convenient.
     At this point, you can access an arbitrary CS lab machine remotely over SSH
     by running the following from a terminal on your machine:
 
+    (Replace "username" with your BYU CS username)
+
     ```bash
-    ssh schizo
+    ssh username@schizo.cs.byu.edu
     ```
+    or simply:
+    ```bash
+    ssh username@schizo
+    ```
+    (There is some magic that automatically adds the "cs.byu.edu" suffix if
+    you are on the CS network.)
 
     You can think of schizo as a load balancer for SSH.  Note that your home
     directory is shared across all lab machines (using the network file server
