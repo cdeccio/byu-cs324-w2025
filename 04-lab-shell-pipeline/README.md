@@ -37,7 +37,7 @@ output to files and to other programs in a pipeline.
     - [Checkpoint 2](#checkpoint-2)
     - [Two Pipelined Commands](#two-pipelined-commands)
     - [Checkpoint 3](#checkpoint-3)
-    - [A Pipeline with More Than Two Commands](#a-pipeline-with-more-than-two-commands)
+    - [A Pipeline with an Arbitrary Number of Commands](#a-pipeline-with-an-arbitrary-number-of-commands)
     - [Checkpoint 4](#checkpoint-4)
 - [Helper Functions](#helper-functions)
   - [`parseline()`](#parseline)
@@ -587,7 +587,7 @@ Tests 1 - 3, 34 - 37, and 40 - 42 should work at this point.
 Again, it is time to save your work!
 
 
-### A Pipeline with More Than Two Commands
+### A Pipeline with an Arbitrary Number of Commands
 
 In the previous section, you implemented code to handle pipelines with two
 commands.  It is now time to generalize that code such that a pipe is created
