@@ -134,7 +134,7 @@ is ready to read and execute the next command.  For example:
 tsh> /bin/sleep 10
 tsh> /bin/echo foo bar
 foo bar
-tsh> 
+tsh>
 ```
 
 Even though the first command took 10 seconds to complete, the prompt was not
@@ -174,10 +174,10 @@ Evaluation does not complete (nor is the prompt returned) until _all_ of the
 commands in the pipeline have terminated.  For example:
 
 ```bash
-tsh> /bin/sleep 10 | /bin/echo foo bar  
+tsh> /bin/sleep 10 | /bin/echo foo bar
 foo bar
 tsh> /bin/echo foo bar | /bin/sleep 10
-tsh> 
+tsh>
 ```
 
 In both pipelines `/bin/sleep 10` obviously takes longer than
@@ -188,7 +188,7 @@ following pipeline should not take more than five seconds to run:
 
 ```bash
 tsh> /bin/sleep 5 | /bin/sleep 5
-tsh> 
+tsh>
 ```
 
 Finally, it can combine input and output redirection _and_ pipelining:
@@ -258,7 +258,7 @@ But you will note that it is not as responsive as the reference implementation:
 ```bash
 tsh> /bin/echo foo bar
 tsh> baz
-tsh> quit  
+tsh> quit
 tsh>
 ```
 
@@ -286,7 +286,7 @@ read/eval loop.
 `eval()` is pretty empty.  Let's start by just giving it a simple body:
 
 ```c
-void eval(char *cmdline) 
+void eval(char *cmdline)
 {
     printf("You entered: %s\n", cmdline);
     return;
@@ -313,8 +313,10 @@ might help you understand and troubleshoot your shell.  `strace` reports any
 system calls that are made by a specified process.  Modify your `eval()`
 function to include two system calls, `open()` and `close()`, as follows:
 
+(Note that you will also need to add `#include <fcntl.h>`).
+
 ```c
-void eval(char *cmdline) 
+void eval(char *cmdline)
 {
     printf("You entered: %s\n", cmdline);
     int fd = open("tsh.c", O_RDONLY);
@@ -322,8 +324,6 @@ void eval(char *cmdline)
     return;
 }
 ```
-
-(Note that you will need to add `#include <fcntl.h>`).
 
 Now enter the following at the command line:
 
@@ -376,13 +376,15 @@ in was _not_ a built-in command.
 
 Remove any code added for demonstration purposes.
 
-Use the `parseline()` and `parseargs()` helper functions, 
-[which have been implemented for you](#helper-functions), and pass the first
-command (and its arguments) in the pipeline to `builtin_cmd()`.
+The `parseline()` and `parseargs()` have been implemented for you.  Use these
+functions to parse the command line into "words" (`parseline()`) and then group
+those words into the commands (and their arguments) comprising the pipeline.
+Find their specification and some examples [here](#helper-functions).
 
-If `builtin_cmd()` indicates that it is not a built-in command (return value
-of 0), then begin execution of the commands in the pipeline, following the
-instructions in the next sections.
+Pass the first command (and its arguments) from the pipeline to
+`builtin_cmd()`.  If `builtin_cmd()` indicates that it is not a built-in
+command (return value of 0), then begin execution of the commands in the
+pipeline, following the instructions in the next sections.
 
 
 ### Checkpoint 1
@@ -467,11 +469,21 @@ Now would also be a good time to save your work, if you haven't already.
 
 ### Two Pipelined Commands
 
-For a pipeline a consisting of two commands, a single pipe should be created,
-such that the write end of the pipe is duplicated on the standard output of the
-process running the first/earlier command, and the read end of the pipe is
-duplicated on the standard input of the process running the second/later
-command.
+(Note: The end goal is to create code that creates a pipeline consisting of an
+arbitrary number of commands.  This section (handling two pipelined commands)
+is intended to introduce the pipeline concept using the base case of two
+commands with a single pipe, so you can wrap your head around the more general
+scenario.  However, you are welcome to begin building a
+[pipeline with an arbitrary number of commands](#a-pipeline-with-an-arbitrary-number-of-commands),
+if that feels more intuitive to you.)
+
+For a pipeline consisting of exactly two commands, a single pipe should be
+created, such that the write end of the pipe is duplicated on the standard
+output of the process running the first/earlier command, and the read end of
+the pipe is duplicated on the standard input of the process running the
+second/later command.
+
+Reminder: the number of commands in the pipeline is returned by `parseargs()`.
 
 Because child processes get a duplicate copy of file descriptors from their
 parent, you will want to create the pipe _before_ creating the pair of
@@ -587,6 +599,8 @@ replace the code you created for handling only two commands. However, this is
 not a requirement. (In any case, you have saved your work at this point,
 right?)
 
+Reminder: the number of commands in the pipeline is returned by `parseargs()`.
+
 For any given pair of consecutive commands, the principles are the same as
 those in the previous section.  However, they now should be implemented within
 a carefully-designed `for` loop.  The trick is to do everything in the right
@@ -599,18 +613,41 @@ in different iterations, `i` and `i + 1`, respectively.  Thus, you will need
 the file descriptor values for _that pipe_ to persist through iteration
 `i + 1`.
 
-Remember that file descriptors are simply integers.  Only their value is
-important, not their memory location.  Thus, if `y` contains a file descriptor
-to be saved, the code `x = y;` works just fine, after which `x` can be used in
-place of `y` for "file" operations, and `y` can be overwritten.
+Two different approaches that you might take to implement your loop include the
+following:
+ 1. Create all of your `n - 1` pipe(s) before any child processes are created
+    with `fork()`.  As you iterate through your loop to create your child
+    processes, use the appropriate file descriptors corresponding to the
+    pipe(s) you created before the loop.
+ 2. Call `pipe()` during the loop for each of the command pairs (0 and 1, 1 and
+    2, etc.).  Note that in this case, you will need the file descriptor values
+    for the pipe created in iteration `i` to persist through iteration `i + 1`.
+    That is because the standard output of the child process created in
+    iteration `i` must be connected to the write end of same pipe that is
+    associated with the standard input of the child process created in
+    iteration `i + 1`.  To accomplish this, you can simply copy the value to an
+    integer value.
 
-I highly encourage you to create pseudo code and walk through an example of a
-pipeline with `n` commands over `n` iterations -- one for each child
-process.  Start with `n = 2`.  During each iteration `i`, your code should
-consider the following:
- - Should a new pipe be created during iteration `i`?
- - Should a file descriptor be duplicated onto standard input for command
-   `i`?  If so, where do you get that value?
+    Remember that file descriptors are simply integers.  Only their _value_ is
+    important, not their memory location.  Thus, if `y` contains a file
+    descriptor to be saved, the code `x = y;` works just fine, after which `x`
+    can be used in place of `y` for "file" operations, and `y` can be
+    overwritten.
+
+You are highly encouraged to create pseudo code and walk through an example of
+a pipeline with `n` commands over `n` iterations -- one for each child process.
+Start with `n = 2`.  During each iteration `i`, your code should consider the
+following:
+ - Should the standard input be connected to a file?  Note that this can only
+   be the case if this is the first command in the pipeline.
+ - Should the standard output be connected to a file?  Note that this can only
+   be the case if this is the last command in the pipeline.
+ - Should the standard output be connected to the read end of a pipe?  Note
+   that this will be the case if there is more than one command and this is not
+   the first command.
+ - Should the standard output be connected to the write end of a pipe?  Note
+   that this will be the case if there is more than one command and this is not
+   the last command.
 
 An illustration of what a pipeline with three commands as well as both input
 and output redirection is shown below:
@@ -966,6 +1003,9 @@ Happy testing!
 
 
 # Evaluation
+
+Your code will be evaluated on one of the CS lab machines. It will be compiled
+using `make` with the included `Makefile` and tested using `make testall`.
 
 Your score will be computed out of a maximum of 100 points based on the
 following distribution:
