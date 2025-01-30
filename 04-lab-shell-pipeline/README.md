@@ -642,7 +642,7 @@ following:
    be the case if this is the first command in the pipeline.
  - Should the standard output be connected to a file?  Note that this can only
    be the case if this is the last command in the pipeline.
- - Should the standard output be connected to the read end of a pipe?  Note
+ - Should the standard input be connected to the read end of a pipe?  Note
    that this will be the case if there is more than one command and this is not
    the first command.
  - Should the standard output be connected to the write end of a pipe?  Note
