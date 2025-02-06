@@ -469,7 +469,7 @@ connection with the remote side.
    bytes read, so the bytes read are placed in the buffer immediately following
    bytes previously read.  For example:
    ```c
-   read(fd, buf + tot_bytes_read, bytes_to_read);
+   read(fd, buf + tot_bytes_read, READ_CHUNK_SIZE);
    ```
  - After _all_ the data has been read from standard input (i.e., EOF has been
    reached), write another loop to send all the data that was received (i.e.,
