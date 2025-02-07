@@ -469,8 +469,11 @@ connection with the remote side.
    bytes read, so the bytes read are placed in the buffer immediately following
    bytes previously read.  For example:
    ```c
-   read(fd, buf + tot_bytes_read, READ_CHUNK_SIZE);
+   read(fd, buf + tot_bytes_read, bytes_to_read);
    ```
+   (Remember: `bytes_to_read` should never be more than
+   `BUFSIZE - tot_bytes_read`, or else you might accidentally write beyond your
+   buffer, causing a buffer overflow.)
  - After _all_ the data has been read from standard input (i.e., EOF has been
    reached), write another loop to send all the data that was received (i.e.,
    the bytes you just stored in the buffer) to the connected socket, until it
