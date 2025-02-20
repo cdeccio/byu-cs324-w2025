@@ -974,21 +974,21 @@ manipulation:
 
 ## Testing Servers
 
-The following hostnames and ports (format: "hostname:port") correspond to the
-servers where the games might be initiated.
+The following hostnames correspond to the servers where the games might be
+initiated.  In all cases the port is 32400.
 
- - alaska:32400
- - arkansas:32400
- - california:32400
- - connecticut:32400
- - falcon:32400
- - florida:32400
- - groot:32400
- - hawaii:32400
- - hawkeye:32400
- - hulk:32400
- - rogers:32400
- - wanda:32400
+ - arizona
+ - alaska
+ - carolina
+ - california
+ - idaho
+ - hawaii
+ - michigan
+ - indiana
+ - rhodeisland
+ - oregon
+ - tennessee
+ - wyoming
 
 Note that all servers provide exactly the same behavior.  However, to balance
 the load and to avoid servers that might be down for one reason or another, we
