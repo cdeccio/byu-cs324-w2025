@@ -57,10 +57,7 @@ both communication types.
 
  5. On the left "remote" pane, use SSH to remotely log on to a CS lab machine
     _different_ from the one you are already on.  See a list of machine names
-    [here](https://docs.cs.byu.edu/doku.php?id=open-lab-layout):
-
-    Fall 2023 Note: At the moment, only machines within the "States" and
-    "Marvel" labs appear to be reliable choices.
+    [here](https://support.cs.byu.edu/KB/View/81187473-lab-maps):
 
     (Replace "username" with your actual CS username and "hostname" with the
     name of the host to which you wish to log on.)
