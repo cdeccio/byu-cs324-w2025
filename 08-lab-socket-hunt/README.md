@@ -34,7 +34,6 @@ remote port assignment, IPv4 and IPv6, message parsing, and more.
    - [Op Codes](#op-codes)
    - [UDP Socket Behaviors](#udp-socket-behaviors)
    - [Testing Servers](#testing-servers)
-   - [Logs](#logs)
    - [Debugging Hints](#debugging-hints)
  - [Automated Testing](#automated-testing)
  - [Evaluation](#evaluation)
