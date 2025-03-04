@@ -246,6 +246,11 @@ the second argument (`service`) to `getaddrinfo()` is type `char *`.  Thus, if
 you only have the port as an integer, then you should convert it (not cast
 it!).  You can `sprintf()` to do this.
 
+Note that the [sockets homework assignment](../07-hw-sockets) has code that
+iterates over the list populated by `getaddrinfo()`.  There is no advantage to
+doing that in this particular assignment; you can just use the first entry in
+the list.
+
 _Do not call `connect()` on the socket!_  While `connect()` is useful for UDP
 (`SOCK_DGRAM`) communications in which the remote address and port will not
 change, later in this lab you will be _changing_ the remote address and port
