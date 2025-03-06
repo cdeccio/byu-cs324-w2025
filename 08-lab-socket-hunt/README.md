@@ -270,12 +270,13 @@ following:
 ```
 
 In the example above, `remote_addr_ss` is the variable in which the values are
-actually stored.  However, most of the system calls use type
-`struct sockaddr *`, so the code above assigns `remote_addr` to the address of
-`remote_addr_ss`.  Since `remote_addr` points to `remote_addr_ss`, you can use
-`remote_addr` for everything instead of `remote_addr_ss`.  The
+actually stored.  The variable `remote_addr` is a pointer that contains the
+address of `remote_addr_ss`.  Since `remote_addr` points to `remote_addr_ss`,
+you can use `remote_addr` for `sendto()` and everything else that uses an
+argument of type `struct sockaddr *`.  The
 [sockets homework assignment](../07-hw-sockets) has examples of this.
 
+Side note:
 You are probably asking yourself why all the hassle with
 `struct sockaddr_storage` and `struct sockaddr`. It is a bit confusing!  The
 reason is that that there are two types of IP addresses: IPv4 and IPv6.  Since
@@ -300,34 +301,32 @@ this:
 		memcpy(remote_addr, rp->ai_addr, sizeof(struct sockaddr_storage));
 ```
 
-See the original `client.c` file in the
+(See the original `client.c` file in the
 [sockets homework assignment](../07-hw-sockets) for the example code from which
-this came.
+this came.)
 
-The `parse_sockaddr()` and `populate_sockaddr()` helper functions
-have been provided for you in [../code/sockhelper.c](../code/sockhelper.c) to
-extract the address and port from a `struct sockaddr_storage` or populate the
-`struct sockaddr_storage` with a given address and port, respectively.  Thus,
-you can maintain the IP address and port in separate variables as follows:
+At this point, `remote_addr_ss` (pointed to by `remote_addr`) contains the
+address and port contained in the `getaddrinfo()` result item (`rp->ai_addr`).
+However, working  with a string (`char *`) for IP address and an `unsigned
+short` for port is a little more intuitive than working strictly with instances
+of `struct sockaddr_storage`.  Thus, you should declare variables like these:
 
 ```c
 	char remote_ip[INET6_ADDRSTRLEN];
 	unsigned short remote_port;
 ```
 
-And you can populate the structure pointed to by `remote_addr` with the proper
-address and port values with something like this:
+You can populate these variables with the proper address and port values with
+something like this:
 
 ```c
-	populate_sockaddr(remote_addr, addr_fam, remote_ip, remote_port);
+	parse_sockaddr(remote_addr, remote_ip, &remote_port);
 ```
 
-Note that `addr_fam` refers to the address family, which is an integer (type
-`int`) having a value of either `AF_INET` (IPv4) or `AF_INET6` (IPv6).
-
-Working with a string (`char *`) for IP address and an `unsigned short` for
-port is a little more intuitive than working strictly with instances of `struct
-sockaddr_storage`.
+The `parse_sockaddr()` helper function has been provided for you in
+[../code/sockhelper.c](../code/sockhelper.c) to extract the address and port
+from a `struct sockaddr_storage` because it's a little tedious -- as described
+above in the discussion of `struct sockaddr_storage` and `struct sockaddr`.
 
 Finally, you will want to do something similar for keeping track of the local
 address and port.  Because the kernel _implicitly_ assigns the local address
@@ -351,11 +350,6 @@ Then:
 	s = getsockname(sock, local_addr, &addr_len);
 	parse_sockaddr(local_addr, local_ip, &local_port);
 ```
-
-Note that for levels 0 through 3, your client will only use IPv4 (i.e.,
-`AF_INET`), so the value for `addr_fam` will always be the same.  Nonetheless,
-keeping track of it is good practice, and you will find it useful in for
-[level 4 (extra credit)](#level-4-extra-credit) when IPv6 is added.
 
 The `client.c` file in the [sockets homework assignment](../07-hw-sockets) has
 examples of this.
@@ -665,16 +659,31 @@ Some guidance follows as to how to use the new remote port in future
 communications.
 
 It was recommended [previously](#sending-and-receiving) that you keep track of
-the remote addresses and ports in the `remote_ip` and `remote_port` variables,
-so you can populate `remote_addr` with the proper values by calling
-`populate_sockaddr()`.  Thus, after receiving the directions response from the
-server and extracting the new remote port, you can just do something like this:
+the remote addresses and ports in the `remote_ip` and `remote_port` variables.
+With those variables having the proper values, you can populate `remote_addr`
+using the `populate_sockaddr()` helper function, which has been provided for
+you in [../code/sockhelper.c](../code/sockhelper.c).  Thus, after receiving the
+directions response from the server and extracting the new remote port, you can
+just do something like this:
+
+(See note below about `addr_fam`.)
 
 ```c
 	populate_sockaddr(remote_addr, addr_fam, remote_ip, remote_port);
 ```
 
-Of course, `remote_ip` should still contain the appropriate IP address.
+Note that `addr_fam` refers to the address family, which is an integer (type
+`int`) having a value of either `AF_INET` (IPv4) or `AF_INET6` (IPv6).  For
+levels 0 through 3, your client will only use IPv4 (i.e., `AF_INET`), so the
+value for `addr_fam` will always be the same.  Nonetheless, you should declare
+a variable for address family to keep track of it.
+
+```c
+int addr_fam = AF_INET;
+```
+
+You will find it useful in for [level 4 (extra credit)](#level-4-extra-credit),
+when IPv6 is added and the value of `addr_fam` changes.
 
 Just as with level 0, have your code
 [collect all the chunks and printing the entire treasure to standard output](#program-output).
