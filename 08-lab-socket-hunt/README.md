@@ -772,8 +772,12 @@ following to prepare the next directions request:
    by the client to read them to determine which port they came from.  You
    should declare new `struct sockaddr_storage` and `struct sockaddr *`
    variables for use with `recvfrom()`, so you don't overwrite the value of
-   your `remote_addr_ss` variable.  The next directions request will be sent to
-   that address and port, once it is prepared.
+   your `remote_addr_ss` variable.  You will need to preserve that value for
+   sending the next directions request, once it is prepared.
+
+   You can use `parse_sockaddr()` to extract the remote address and
+   (especially) port from the `struct sockaddr_storage` that you populated with
+   `recvfrom()`.
 
    Each of the `m` datagrams received will have 0 length.  However, the contents
    of the datagrams are not what is important; what is important is the remote
@@ -782,8 +786,6 @@ following to prepare the next directions request:
  - Sum the values of the remote ports of the `m` datagrams to derive the nonce.
    Remember the following:
 
-   - Each of the ports must be in host order before its value is added (Hint:
-     use `ntohs()`).
    - The sum of the ports might overflow the 16 bits associated with an
      `unsigned short` (16 bits), so you will want to keep track of their
      _sum_ with an `unsigned int` (32 bits).
