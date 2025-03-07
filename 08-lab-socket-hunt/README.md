@@ -400,24 +400,32 @@ strace -xe trace=sendto,recvfrom ./treasure_hunter server 32400 0 7719
 
 That will produce output that will include something like this:
 
+(Note that this is only an example used to illustrate what `strace()` output
+might look like.  In particular, the message contents will be specific to the
+message you created, and the remote IP address will correspond to whatever
+[server](#testing-servers) you specified on the command line.)
+
 ```
 sendto(3, "\x00\x01\x07\x5b\xcd\x15\x1e\x27", 8, 0, {sa_family=AF_INET, sin_port=htons(32400), sin_addr=inet_addr("192.0.2.1")}, 128) = 8
 recvfrom(3, "\x04\x61\x62\x63\x64\x01\xbe\xef\x12\x34\x56\x78", 512, 0, {sa_family=AF_INET, sin_port=htons(32400), sin_addr=inet_addr("192.0.2.1")}, [128 => 16]) = 12
 ```
 
-This shows you:
+For this particular example, the output is explained as follows:
+
  - for the `sendto()` call:
    - the file descriptor used: fd 3, corresponding to your socket
    - the data that was sent: bytes `00 01 07 5b cd 15 1e 27` (hexadecimal)
-   - the remote address and port to which the data was sent: 192.0.2.1 port 32400
+   - the remote address and port to which the data was sent: 192.0.2.1 and
+     32400.
  - for the `recvfrom()` call:
    - the file descriptor used: fd 3, corresponding to your socket
    - the data that was received: `04 61 62 63 64 01 be ef 12 34 56 78`
      (hexadecimal)
    - the remote address and port from which the data was received: 192.0.2.1
      port 32400
-Use this output to double-check what you think you are sending and receiving
-against what you are actually sending and receiving.
+
+Use the pattern of output above to double-check what you think you are sending
+and receiving against what you are actually sending and receiving.
 
 
 ### Checkpoint 3
