@@ -148,7 +148,8 @@ printf("before accept()\n"); fflush(stdout);
 printf("after accept()\n"); fflush(stdout);              
 ```
 
-Open `sbuf.c`, and put similar `printf()` statements around the following lines:
+Open `sbuf.c` (in the `../code` directory), and put similar `printf()` statements
+around the following lines:
  - `sem_wait(&sp->slots);`
  - `sem_post(&sp->items);`
  - `sem_wait(&sp->items);`
