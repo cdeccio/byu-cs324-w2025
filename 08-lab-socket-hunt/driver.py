@@ -113,18 +113,20 @@ def main():
                 p = subprocess.run(cmd,
                         stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                         timeout=TIMEOUT)
-            except subprocess.TimeoutExpired:
-                treasure = b''
-                treasure_len = 0
-                strace_output = b''
-                h = ''
+            except subprocess.TimeoutExpired as e:
+                treasure = e.stdout or b''
+                strace_output = e.stderr or b''
+                timeout = True
             else:
                 treasure = p.stdout
-                if treasure and treasure.endswith(b'\n'):
-                    treasure = treasure[:-1]
-                treasure_len = len(treasure)
                 strace_output = p.stderr
                 h = hashlib.sha1(treasure).hexdigest()
+                timeout = False
+
+            if treasure and treasure.endswith(b'\n'):
+                treasure = treasure[:-1]
+            treasure_len = len(treasure)
+            h = hashlib.sha1(treasure).hexdigest()
 
             tot_bytes = 0
             output = strace_output.decode('utf-8').strip()
@@ -139,9 +141,18 @@ def main():
                         tot_bytes += received_bytes - BYTES_MINUS_CHUNK
             
             if h not in SUMS:
-                sys.stdout.write(f' FAILED: output does not match')
+                if tot_bytes == 0:
+                    sys.stdout.write(f' FAILED: no response from server ({args.server}:{args.port})')
+                elif timeout:
+                    sys.stdout.write(f' FAILED: scenario timed out at {TIMEOUT} seconds; {tot_bytes} bytes were received.')
+                    if treasure:
+                        sys.stdout.write(f'\n        Output: {treasure.decode("utf-8")}')
+                else:
+                    sys.stdout.write(f' FAILED: output does not match; {tot_bytes} were received.')
+                    if treasure:
+                        sys.stdout.write(f'\n        Output: {treasure.decode("utf-8")}')
             elif tot_bytes != treasure_len:
-                sys.stdout.write(f' FAILED: invalid number of bytes received')
+                sys.stdout.write(f' FAILED: {tot_bytes} bytes were received, but {treasure_len} is {len(treasure)} bytes in length')
             else:
                 score += LEVEL_SCORES[level] / len(SEEDS)
                 sys.stdout.write(f' PASSED')
