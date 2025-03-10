@@ -138,6 +138,21 @@ of this value.
 
 ### `parse_request()`
 
+Important note.  For this part of the lab (and this part only), you _may_ use a
+large language model LLM, such as ChatGPT or CodePilot, to generate code.
+However, it is not required.  If you choose to generate code with an LLM, you
+must meet the following requirements. You are responsible for generating the
+appropriate prompts and making the appropriate modifications to LLM-generated
+code to make it work properly.
+ - Your code _must_ use the function definition for `parse_request()` described
+   below.
+ - You _must_ include the following in the commends above the LLM-generated
+   code:
+   - The LLM used.
+   - The prompt you provided in the comments above.
+   - A brief description of what changes you had to make, if any, to get it to
+     work properly.
+
 `parse_request()` parses the complete HTTP request and stores the components in
 strings that can be used to modify the request and issue it to the HTTP server.
 The function takes the following as arguments:
