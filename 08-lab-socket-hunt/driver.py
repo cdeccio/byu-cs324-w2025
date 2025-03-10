@@ -152,7 +152,8 @@ def main():
                     if treasure:
                         sys.stdout.write(f'\n        Output: {treasure.decode("utf-8")}')
             elif tot_bytes != treasure_len:
-                sys.stdout.write(f' FAILED: {tot_bytes} bytes were received, but {treasure_len} is {len(treasure)} bytes in length')
+                sys.stdout.write(f' FAILED: {tot_bytes} bytes were received, but treasure is {treasure_len} bytes in length')
+                sys.stdout.write(f'\n        Output: {treasure.decode("utf-8")}')
             else:
                 score += LEVEL_SCORES[level] / len(SEEDS)
                 sys.stdout.write(f' PASSED')
