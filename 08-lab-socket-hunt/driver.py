@@ -37,7 +37,8 @@ SUMS = ['3e7949f4943f1d40959c87166a46e0433665fb19',
         'd8e1d8f75a408e3ad40156f94a5d779c4626ff9c',
         '30242ce853936406789d806c1fb6b95a535bc013']
 
-RECV_RE = re.compile('^recv(from)?.* = (\d+)$')
+RECV_RE = re.compile(r'^recv(from)?\(\d+,.*= (\d+)$')
+ERROR_CODE_RE = re.compile(r'^recv(from)?\(\d+, "\\(\d+)"')
 
 level_seed_result = (False, 0, None, None)
 
@@ -129,6 +130,7 @@ def main():
             h = hashlib.sha1(treasure).hexdigest()
 
             tot_bytes = 0
+            error_code = None
             output = strace_output.decode('utf-8').strip()
             for line in output.splitlines():
                 # skip DNS lookups
@@ -139,21 +141,27 @@ def main():
                     received_bytes = int(m.group(2))
                     if received_bytes > 1:
                         tot_bytes += received_bytes - BYTES_MINUS_CHUNK
+                    else: # error
+                        m1 = ERROR_CODE_RE.search(line)
+                        if m1 is not None:
+                            error_code = int(m1.group(2), 8)
             
             if h not in SUMS:
-                if tot_bytes == 0:
+                if error_code is not None:
+                    sys.stdout.write(f' FAILED: error code {error_code} received from server after {tot_bytes} bytes were received.')
+                elif tot_bytes == 0:
                     sys.stdout.write(f' FAILED: no response from server ({args.server}:{args.port})')
                 elif timeout:
-                    sys.stdout.write(f' FAILED: scenario timed out at {TIMEOUT} seconds; {tot_bytes} bytes were received.')
+                    sys.stdout.write(f' FAILED: scenario timed out at {TIMEOUT} seconds after {tot_bytes} bytes were received.')
                     if treasure:
-                        sys.stdout.write(f'\n        Output: {treasure.decode("utf-8")}')
+                        sys.stdout.write(f'\n        Treasure: {treasure.decode("utf-8")}')
                 else:
-                    sys.stdout.write(f' FAILED: output does not match; {tot_bytes} were received.')
+                    sys.stdout.write(f' FAILED: {tot_bytes} bytes were received, but treasure contents not match; ')
                     if treasure:
-                        sys.stdout.write(f'\n        Output: {treasure.decode("utf-8")}')
+                        sys.stdout.write(f'\n        Treasure: {treasure.decode("utf-8")}')
             elif tot_bytes != treasure_len:
                 sys.stdout.write(f' FAILED: {tot_bytes} bytes were received, but treasure is {treasure_len} bytes in length')
-                sys.stdout.write(f'\n        Output: {treasure.decode("utf-8")}')
+                sys.stdout.write(f'\n        Treasure: {treasure.decode("utf-8")}')
             else:
                 score += LEVEL_SCORES[level] / len(SEEDS)
                 sys.stdout.write(f' PASSED')
