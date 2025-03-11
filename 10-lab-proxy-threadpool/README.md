@@ -141,12 +141,14 @@ of this value.
 Important note.  For this part of the lab (and this part only), you _may_ use a
 large language model LLM, such as ChatGPT or CodePilot, to generate code.
 However, it is not required.  If you choose to generate code with an LLM, you
-must meet the following requirements. You are responsible for generating the
-appropriate prompts and making the appropriate modifications to LLM-generated
-code to make it work properly.
+must meet the following requirements:
+ - You are responsible for generating the appropriate prompts and making the
+   appropriate modifications to LLM-generated code to make it work properly.
+ - You are responsible for understanding the code and the concepts underlying
+   it.
  - Your code _must_ use the function definition for `parse_request()` described
    below.
- - You _must_ include the following in the commends above the LLM-generated
+ - You _must_ include the following in the comments above the LLM-generated
    code:
    - The LLM used.
    - The prompt you provided in the comments above.
