@@ -241,11 +241,7 @@ might need to adapt these instructions.
     [Debian](https://www.debian.org/releases/stable/debian-installer/).
     For M1/M2/M3 hardware, use the arm64 architecture.  For anything else, use
     amd64.
- 3. Download the "netinst" (net install) image from
-    [Debian](https://www.debian.org/releases/stable/debian-installer/).
-    For M1/M2 hardware, use the arm64 architecture.  For anything else, use
-    amd64.
-
+ 
  4. Start UTM, then do the following:
 
     a. Click the "+" button to create a new virtual machine.
