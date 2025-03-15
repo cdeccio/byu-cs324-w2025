@@ -107,7 +107,7 @@ line is a workaround.
     Use the PID and LWP to identify different threads or processes.
 
  3. From the `ps` output, how many (unique) threads are running with each
-    proces and why?  Use the PID and LWP to identify different threads or
+    process and why?  Use the PID and LWP to identify different threads or
     processes.
 
  4. Enter `Ctrl`+`c` on the pane in which `nc` was first executed to interrupt
