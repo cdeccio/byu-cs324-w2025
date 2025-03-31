@@ -25,7 +25,11 @@ Read the following in preparation for this assignment:
  - LLNL's [OpenMP Tutorial](https://hpc-tutorials.llnl.gov/openmp/)
  - Introduction in the header comments of `mandelbrot.c`.
 
-You should do your work on a BYU CS workstation.
+Using the guidance from the [remote access information
+page](../REMOTE_ACCESS.md), log in to a CS lab machine.
+
+The exercises in this assignment will only work if run from a CS lab
+machine.
 
 
 # Instructions
