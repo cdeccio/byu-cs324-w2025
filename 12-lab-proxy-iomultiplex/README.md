@@ -509,6 +509,7 @@ you when more can be done.
 
 Now would be a good time to test with the following commands:
 
+(NOTE: the commands below are still expected to fail.)
 
 (Replace "port" with the port on which your HTTP proxy is listening.)
 
