@@ -209,7 +209,7 @@ For each run, record both:
     parallelize with respect to *overall* execution time.  Show the steps you
     used to calculate it.
 
- 8. Briefly explain why the efficiency calculated in query 7 is less than 1.
+ 8. Briefly explain why the efficiency calculated in question 7 is less than 1.
 
  9. Consider Amdahl's Law:
 
